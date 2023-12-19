@@ -43,3 +43,4 @@ target_link_libraries(sha1nearcollisionattack
     BZip2::BZip2
     hashclash
 )
+target_compile_options(sha1nearcollisionattack PRIVATE -Wno-shift-overflow)
