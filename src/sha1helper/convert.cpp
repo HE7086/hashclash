@@ -436,6 +436,7 @@ int showmespaceconditions(parameters_type& parameters)
 	cout << "# dIHVs: " << tmp.size() << endl;
 #endif
 	analyze_indepsection_prob(space, tbegin, parameters.m_mask, tmp);
+    return 0;
 }
 
 void analyze_indepsection_prob(sha1messagespace& mespace, int tbegin, const uint32 dmmask[80], vector<dqt_sort>& target_dihvs)

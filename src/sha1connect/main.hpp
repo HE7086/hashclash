@@ -337,7 +337,7 @@ public:
 };
 
 struct diffpathupper_less
-	: public std::binary_function<sha1differentialpath, sha1differentialpath, bool>
+	: public std::function<bool(sha1differentialpath, sha1differentialpath)>
 {
 	bool operator()(const sha1differentialpath& _Left, const sha1differentialpath& _Right) const
 	{
@@ -411,7 +411,7 @@ struct diffpathupper_less
 };
 
 struct diffpathlower_less
-	: public std::binary_function<sha1differentialpath, sha1differentialpath, bool>
+	: public std::function<bool(sha1differentialpath, sha1differentialpath)>
 {
 	bool operator()(const sha1differentialpath& _Left, const sha1differentialpath& _Right) const
 	{
@@ -495,7 +495,7 @@ struct diffpathlower_less
 };
 
 struct diffpathlower_less_weight
-	: public std::binary_function<sha1differentialpath, sha1differentialpath, bool>
+	: public std::function<bool(sha1differentialpath, sha1differentialpath)>
 {
 	bool operator()(const sha1differentialpath& _Left, const sha1differentialpath& _Right) const
 	{

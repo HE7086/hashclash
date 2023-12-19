@@ -281,7 +281,7 @@ for (unsigned pi = 0; pi < paths.size(); ++pi) { try {
 	break;
 } catch (std::exception& e) { cerr << "c: " << e.what() << endl; } catch (...) {} 
 } // for (unsigned pi = 0; pi < paths.size(); ++pi)
-    __builtin_unreachable();
+    return 0;
 }
 
 
