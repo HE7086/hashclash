@@ -17,7 +17,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
 # enable warnings by default for all targets
 # add_compile_options(-Wall -Wextra -Wpedantic -Werror)
-add_compile_options(-Wno-deprecated-declarations)
 add_link_options($<$<CONFIG:RELEASE>:-s>)
 
 # enable lto for release build

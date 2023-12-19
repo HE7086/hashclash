@@ -345,7 +345,7 @@ namespace hashclash {
 
 	typedef triple<wordconditions,wordconditions,unsigned> soltriple;
 	struct solutions_less
-		: public std::binary_function<soltriple, soltriple, bool>
+		: public std::function<bool(soltriple, soltriple)>
 	{
 		bool operator()(const soltriple& _Left, const soltriple& _Right) const
 		{ return _Left.third < _Right.third; }

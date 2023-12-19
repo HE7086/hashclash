@@ -301,7 +301,7 @@ public:
 };
 
 struct diffpathlower_less
-	: public std::binary_function<differentialpath, differentialpath, bool>
+	: public std::function<bool(differentialpath, differentialpath)>
 {
 	bool operator()(const differentialpath& _Left, const differentialpath& _Right) const
 	{
@@ -334,7 +334,7 @@ struct diffpathlower_less
 };
 
 struct diffpathupper_less
-	: public std::binary_function<differentialpath, differentialpath, bool>
+	: public std::function<bool(differentialpath, differentialpath)>
 {
 	bool operator()(const differentialpath& _Left, const differentialpath& _Right) const
 	{

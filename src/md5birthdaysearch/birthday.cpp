@@ -484,7 +484,7 @@ void load_save_trails(bool dosave = true)
 		{
 			boost::filesystem::path filepath = *dit;
 			if (!exists(*dit) 
-				|| symbolic_link_exists(*dit)
+				|| dit->is_symlink()
 				|| is_directory(*dit))
 				continue;
 #if BOOST_VERSION == 104300
@@ -562,7 +562,7 @@ void load_save_trails(bool dosave = true)
 }
 
 
-struct coll_less : public std::binary_function<pair<trail_type,trail_type>, pair<trail_type,trail_type>, bool>
+struct coll_less : public std::function<bool(pair<trail_type,trail_type>, pair<trail_type,trail_type>)>
 {
 	bool operator()(const pair<trail_type,trail_type>& _Left, const pair<trail_type,trail_type>& _Right) const {
 		return _Left.first.len < _Right.first.len;
