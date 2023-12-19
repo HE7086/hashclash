@@ -87,7 +87,6 @@ int main()
 #include <boost/filesystem/operations.hpp>
 #include <boost/program_options.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/timer.hpp>
 #include <boost/cstdint.hpp>
 
 typedef boost::uint64_t uint64;
@@ -121,8 +120,6 @@ int main(int argc, char** argv)
 
 	try
 	{
-		boost::timer runtime;
-
 		po::options_description desc("Allowed options");
 		desc.add_options()
 			("help,h", "Show options.")
@@ -132,16 +129,9 @@ int main(int argc, char** argv)
 			("out,o", po::value<vector<string> >()->multitoken(), "Set output filenames. This must be the last option and exactly 2 filenames must be specified. \nDefault: -o msg1.bin msg2.bin")
 			;
 
-		po::options_description hidden;
-		hidden.add_options()
-			("testmd5iv", "Endlessly time collision generation using MD5 initial value.")
-			("testrndiv", "Endlessly time collision generation using arbitrary random initial values.")
-			("testreciv", "Endlessly time collision generation using recommended random initial values.")
-			("testall", "Endlessly time collision generation for each case.")
-			;
 
 		po::options_description cmdline;
-		cmdline.add(desc).add(hidden);
+		cmdline.add(desc);
 		po::positional_options_description p;
 		p.add("prefixfile", 1);
 		po::variables_map vm;
@@ -291,9 +281,6 @@ int main(int argc, char** argv)
 		save_block(ofs1, msg1block1);
 		save_block(ofs2, msg2block0);
 		save_block(ofs2, msg2block1);
-		if (verbose)
-			cout << "Running time: " << runtime.elapsed() << " s" << endl;
-		return 0;
 	} catch (exception& e)
 	{
 		cerr << "\nException caught:\n" << e.what() << endl;
@@ -313,15 +300,9 @@ void test_md5iv(bool single)
 	uint32 msg2block0[16];
 	uint32 msg2block1[16];
 
-	boost::timer runtime;
 	while (true)
 	{
-		runtime.restart();
 		find_collision(IV, msg1block0, msg1block1, msg2block0, msg2block1);
-		double time = runtime.elapsed();
-		cout << endl << "Running time: " << time << " s" << endl;
-		ofstream of_timings("timings_md5iv.txt", ios::app);
-		of_timings << time << endl;
 		if (single) return;
 	}
 }
@@ -334,16 +315,10 @@ void test_rndiv(bool single)
 	uint32 msg2block0[16];
 	uint32 msg2block1[16];
 
-	boost::timer runtime;
 	while (true)
 	{
-		runtime.restart();
 		IV[0] = xrng64(); IV[1] = xrng64(); IV[2] = xrng64(); IV[3] = xrng64();
 		find_collision(IV, msg1block0, msg1block1, msg2block0, msg2block1);
-		double time = runtime.elapsed();
-		cout << endl << "Running time: " << time << " s" << endl;
-		ofstream of_timings("timings_rndiv.txt", ios::app);
-		of_timings << time << endl;
 		if (single) return;
 	}
 }
@@ -356,19 +331,13 @@ void test_reciv(bool single)
 	uint32 msg2block0[16];
 	uint32 msg2block1[16];
 
-	boost::timer runtime;
 	while (true)
 	{
-		runtime.restart();
 		IV[0] = xrng64(); IV[1] = xrng64(); IV[2] = xrng64(); IV[3] = xrng64();
 		IV[2] |= 1<<25; IV[2] ^= ((IV[2] & (1<<24))<<1);
 		IV[3] &= ~(1<<25); IV[3] ^= ((IV[3] & (1<<24))<<1);
 
 		find_collision(IV, msg1block0, msg1block1, msg2block0, msg2block1);
-		double time = runtime.elapsed();
-		cout << endl << "Running time: " << time << " s" << endl;
-		ofstream of_timings("timings_reciv.txt", ios::app);
-		of_timings << time << endl;
 		if (single) return;
 	}
 }
