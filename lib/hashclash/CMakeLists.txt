@@ -1,0 +1,41 @@
+add_library(hashclash SHARED
+    bestof.hpp
+    booleanfunction.cpp
+    booleanfunction.hpp
+    conditions.cpp
+    conditions.hpp
+    config.h
+    cpuperformance.hpp
+    differentialpath.cpp
+    differentialpath.hpp
+    md5detail.cpp
+    md5detail.hpp
+    progress_display.hpp
+    rng.cpp
+    rng.hpp
+    saveload.hpp
+    saveload_bz2.hpp
+    saveload_gz.hpp
+    sdr.cpp
+    sdr.hpp
+    sha1detail.cpp
+    sha1detail.hpp
+    sha1differentialpath.cpp
+    sha1differentialpath.hpp
+    sha1messagespace.cpp
+    sha1messagespace.hpp
+    simd/simd_avx256.h
+    timer.cpp
+    timer.hpp
+    types.hpp
+)
+target_include_directories(hashclash
+    PUBLIC
+    ${Boost_INCLUDE_DIRS}
+)
+target_link_libraries(hashclash
+    PUBLIC
+    ${Boost_LIBRARIES}
+    ZLIB::ZLIB
+    BZip2::BZip2
+)

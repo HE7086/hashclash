@@ -1,0 +1,30 @@
+add_executable(md5birthdaysearch
+    birthday.cpp
+    # cuda_md5.cu
+    dostep.cpp
+    main.hpp
+    storage.cpp
+    birthday_types.hpp
+    cuda_cyclicbuffer.hpp
+    distribution.hpp
+    main.cpp
+    simd_avx256.cpp
+    storage.hpp
+)
+
+target_include_directories(md5birthdaysearch
+    SYSTEM
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/lib
+)
+target_include_directories(md5birthdaysearch
+    PUBLIC
+    ${Boost_INCLUDE_DIRS}
+)
+target_link_libraries(md5birthdaysearch
+    PUBLIC
+    ${Boost_LIBRARIES}
+    ZLIB::ZLIB
+    BZip2::BZip2
+    hashclash
+)

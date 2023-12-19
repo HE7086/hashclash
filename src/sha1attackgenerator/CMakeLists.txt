@@ -1,0 +1,27 @@
+add_executable(sha1attackgenerator
+    checkokpaths.cpp
+    collfind.cpp
+    collisionfinding.cpp
+    filters.cpp
+    main.cpp
+    main.hpp
+    program_generator.cpp
+    tunnel_analysis.cpp
+)
+
+target_include_directories(sha1attackgenerator
+    SYSTEM
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/lib
+)
+target_include_directories(sha1attackgenerator
+    PUBLIC
+    ${Boost_INCLUDE_DIRS}
+)
+target_link_libraries(sha1attackgenerator
+    PUBLIC
+    ${Boost_LIBRARIES}
+    ZLIB::ZLIB
+    BZip2::BZip2
+    hashclash
+)

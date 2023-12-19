@@ -1,0 +1,33 @@
+add_executable(md5fastcoll
+    block0.cpp
+    block1stevens00.cpp
+    block1stevens10.cpp
+    block1wang.cpp
+    main.hpp
+    block1.cpp
+    block1stevens01.cpp
+    block1stevens11.cpp
+    main.cpp
+    md5.cpp
+)
+
+target_include_directories(md5fastcoll
+    SYSTEM
+    PUBLIC
+    ${CMAKE_SOURCE_DIR}/lib
+)
+target_include_directories(md5fastcoll
+    PUBLIC
+    ${Boost_INCLUDE_DIRS}
+)
+target_link_libraries(md5fastcoll
+    PUBLIC
+    ${Boost_LIBRARIES}
+    ZLIB::ZLIB
+    BZip2::BZip2
+    hashclash
+)
+target_compile_definitions(md5fastcoll
+    PUBLIC
+    BOOST_TIMER_ENABLE_DEPRECATED
+)
