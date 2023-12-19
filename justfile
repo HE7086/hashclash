@@ -4,7 +4,7 @@ build MODE="Debug":
     export CUDAHOSTCXX=/usr/bin/g++-12 
     cmake -B build -G "Ninja Multi-Config"
     cmake --build build --config {{MODE}}
-    ln -sf build/bin/{{MODE}} bin
+    rm -rf bin && ln -sf build/bin/{{MODE}} bin
 
 clean:
     ninja -C build clean

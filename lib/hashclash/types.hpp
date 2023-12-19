@@ -20,8 +20,6 @@
 #ifndef HASHCLASH_TYPES_HPP
 #define HASHCLASH_TYPES_HPP
 
-#include "config.h"
-
 #include <utility>
 #include <algorithm>
 #include <vector>

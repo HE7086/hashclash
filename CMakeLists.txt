@@ -7,7 +7,7 @@ set(CMAKE_COLOR_DIAGNOSTICS ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-# list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 # save the executables/libraries according to GNU standard
 include(GNUInstallDirs)
@@ -45,6 +45,14 @@ set(CMAKE_CUDA_STANDARD 11)
 set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 set(CMAKE_CUDA_ARCHITECTURES native)
 enable_language(CUDA)
+
+find_package(avx2)
+if(HAVE_AVX2_EXTENSIONS)
+else()
+    message("have avx2")
+    add_compile_definitions(HASHCLASH_HAVE_AVX2)
+    add_compile_options(-march=native)
+endif()
 
 add_subdirectory(src)
 add_subdirectory(lib)

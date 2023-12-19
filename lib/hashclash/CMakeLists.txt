@@ -4,7 +4,6 @@ add_library(hashclash STATIC
     booleanfunction.hpp
     conditions.cpp
     conditions.hpp
-    config.h
     cpuperformance.hpp
     differentialpath.cpp
     differentialpath.hpp

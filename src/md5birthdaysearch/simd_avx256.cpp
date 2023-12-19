@@ -31,7 +31,6 @@ using namespace std;
 typedef boost::uint32_t uint32;
 typedef boost::uint64_t uint64;
 
-#include <hashclash/config.h>
 #include "birthday_types.hpp"
 
 #ifndef HASHCLASH_HAVE_AVX2
