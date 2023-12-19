@@ -1,6 +1,6 @@
 add_executable(md5birthdaysearch
     birthday.cpp
-    # cuda_md5.cu
+    cuda_md5.cu
     dostep.cpp
     main.hpp
     storage.cpp

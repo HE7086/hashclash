@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+cmake_minimum_required(VERSION 3.24)
 project(hashclash)
 
 # Common Options
@@ -41,6 +41,11 @@ find_package(Boost REQUIRED
         system
         thread
 )
+
+set(CMAKE_CUDA_STANDARD 11)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_ARCHITECTURES native)
+enable_language(CUDA)
 
 add_subdirectory(src)
 add_subdirectory(lib)
