@@ -41,11 +41,19 @@ uint32 Qprev2[85];
 
 void fill_tables(const sha1differentialpath& diffpath)
 {
+    for (int t = 0; t < 80; ++t)
+    {
+		dF[t] = 0;
+    }
 	for (int t = -4; t <= 80; ++t)
 	{
-		dF[t] = dQ[offset+t] = dT[offset+t] = dR[offset+t] = 0;
-		Qvaluemask[offset+t] = Qvalue[offset+t] = 0;
-		Qprev[offset+t] = Qprev2[offset+t] = 0;
+        dQ[offset+t] = 0;
+        dT[offset+t] = 0;
+        dR[offset+t] = 0;
+		Qvaluemask[offset+t] = 0;
+        Qvalue[offset+t] = 0;
+		Qprev[offset+t] = 0;
+        Qprev2[offset+t] = 0;
 	}
 
 	// build tables
