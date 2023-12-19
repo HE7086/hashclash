@@ -1,10 +1,10 @@
 #!/bin/bash
 
 export BINDIR=$(dirname $0)/../bin
-export HELPER=$BINDIR/md5_diffpathhelper
-export FORWARD=$BINDIR/md5_diffpathforward
-export BACKWARD=$BINDIR/md5_diffpathbackward
-export CONNECT=$BINDIR/md5_diffpathconnect
+export HELPER=$BINDIR/md5helper
+export FORWARD=$BINDIR/md5forward
+export BACKWARD=$BINDIR/md5backward
+export CONNECT=$BINDIR/md5connect
 
 N=1
 tconnect=12
@@ -54,7 +54,7 @@ function auto_kill_connect
 	sleep 10
 	if [ "$pidfile" != "" ]; then
 		if [ -s "$pidfile" ]; then
-			echo "Found differential paths, killing md5diffpathconnect"
+			echo "Found differential paths, killing md5connect"
 			kill $(<$pidfile)
 		fi
 	fi

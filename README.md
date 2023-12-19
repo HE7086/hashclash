@@ -1,3 +1,14 @@
+# Fork Note
+This is a fork of [hashclash](https://github.com/cr-marcstevens/hashclash)
+Main purpose is to make the project build on Archlinux with latest library and modern build tools.
+
+```
+sudo pacman -S bzip2 zlib boost cuda just cmake ninja
+just build Release
+```
+
+Initial testing worked, but expect there to be bugs!
+
 # Project HashClash - MD5 & SHA-1 cryptanalytic toolbox
 
 [![C/C++ CI](https://github.com/cr-marcstevens/hashclash/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/cr-marcstevens/hashclash/actions/workflows/c-cpp.yml)
