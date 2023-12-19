@@ -1,4 +1,4 @@
-add_library(hashclash SHARED
+add_library(hashclash STATIC
     bestof.hpp
     booleanfunction.cpp
     booleanfunction.hpp

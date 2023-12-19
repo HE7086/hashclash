@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.24)
 project(hashclash)
 
+set(CMAKE_COLOR_DIAGNOSTICS ON)
+
 # Common Options
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,9 +18,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 # enable warnings by default for all targets
 # add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 add_compile_options(-Wno-deprecated-declarations)
-
-# enable sanitizers for debug build
-# add_compile_options("$<$<CONFIG:DEBUG>:-fsanitize=address;-fsanitize=undefined;-fno-omit-frame-pointer>")
+add_link_options($<$<CONFIG:RELEASE>:-s>)
 
 # enable lto for release build
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE true)
