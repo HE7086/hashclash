@@ -18,6 +18,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 # enable warnings by default for all targets
 # add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 add_link_options($<$<CONFIG:RELEASE>:-s>)
+add_compile_options($<$<CONFIG:RELEASE>:-march=native>)
 
 # enable lto for release build
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE true)
@@ -45,6 +46,8 @@ set(CMAKE_CUDA_STANDARD 11)
 set(CMAKE_CUDA_STANDARD_REQUIRED ON)
 set(CMAKE_CUDA_ARCHITECTURES native)
 enable_language(CUDA)
+
+find_package(CUDAToolkit REQUIRED)
 
 add_subdirectory(src)
 add_subdirectory(lib)
