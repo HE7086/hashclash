@@ -24,6 +24,7 @@
 #include <vector>
 #include <string>
 #include <stdexcept>
+#include <mutex>
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/thread.hpp>
@@ -37,7 +38,7 @@
 using namespace hashclash;
 using namespace std;
 
-extern boost::mutex mut;
+extern std::mutex mut;
 extern std::string workdir;
 class path_container;
 void dostep(path_container& container);

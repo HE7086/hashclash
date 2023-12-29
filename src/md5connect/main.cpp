@@ -22,6 +22,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <mutex>
 
 #include <boost/lexical_cast.hpp>
 #include <boost/program_options.hpp>
@@ -37,7 +38,7 @@ using namespace std;
 namespace po = boost::program_options;
 namespace fs = boost::filesystem;
 
-boost::mutex mut;
+std::mutex mut;
 std::string workdir;
 
 int main(int argc, char** argv) 

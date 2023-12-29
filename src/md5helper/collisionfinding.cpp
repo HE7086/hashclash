@@ -208,7 +208,7 @@ void collisionfinding_thread::do_step26()
 	md5compress(ihv, block);
 	md5compress(ihv2, block2);
 	{
-	boost::lock_guard<boost::mutex> lock(mut);
+	std::lock_guard<std::mutex> lock(mut);
 	if (ihv2[0]-ihv[0] == dQ[0] + dQ[offset+61]) {
 		++t61count;
 		if (hw(t61count)==1)

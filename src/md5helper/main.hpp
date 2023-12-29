@@ -23,6 +23,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <mutex>
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/thread.hpp>
@@ -35,7 +36,7 @@
 using namespace hashclash;
 using namespace std;
 
-extern boost::mutex mut;
+extern std::mutex mut;
 extern std::string workdir;
 
 unsigned load_block(istream& i, uint32 block[]);

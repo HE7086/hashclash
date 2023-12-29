@@ -22,6 +22,7 @@
 #include <set>
 #include <algorithm>
 #include <cmath>
+#include <mutex>
 
 #include <boost/thread.hpp>
 
@@ -588,10 +589,10 @@ namespace hashclash {
 	}
 
 
-	boost::mutex hashclash_init_scn_mutex;
+	std::mutex hashclash_init_scn_mutex;
 	void hashclash_init_scn()
 	{
-		boost::lock_guard<boost::mutex> lock(hashclash_init_scn_mutex);
+		boost::lock_guard<std::mutex> lock(hashclash_init_scn_mutex);
 		if (hashclash_scn.size()) return;
 		std::vector< std::vector< std::pair<unsigned,unsigned> > > hashclash_scn2(0);
 /*		try {
