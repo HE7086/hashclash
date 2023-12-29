@@ -26,6 +26,7 @@
 #include <stdexcept>
 #include <mutex>
 
+#include <boost/lexical_cast.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/thread.hpp>
 
