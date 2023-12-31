@@ -42,12 +42,13 @@ find_package(Boost REQUIRED
         thread
 )
 
-set(CMAKE_CUDA_STANDARD 11)
-set(CMAKE_CUDA_STANDARD_REQUIRED ON)
-set(CMAKE_CUDA_ARCHITECTURES native)
-enable_language(CUDA)
-
-find_package(CUDAToolkit REQUIRED)
+find_package(CUDAToolkit)
+if(CUDAToolkit_FOUND)
+    set(CMAKE_CUDA_STANDARD 11)
+    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+    set(CMAKE_CUDA_ARCHITECTURES native)
+    enable_language(CUDA)
+endif()
 
 add_subdirectory(src)
 add_subdirectory(lib)
