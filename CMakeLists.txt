@@ -18,6 +18,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 # enable warnings by default for all targets
 # add_compile_options(-Wall -Wextra -Wpedantic -Werror)
 add_link_options($<$<CONFIG:RELEASE>:-s>)
+add_compile_options($<$<CONFIG:RELEASE>:-march=native>)
 
 # enable lto for release build
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE true)
@@ -41,10 +42,13 @@ find_package(Boost REQUIRED
         thread
 )
 
-set(CMAKE_CUDA_STANDARD 11)
-set(CMAKE_CUDA_STANDARD_REQUIRED ON)
-set(CMAKE_CUDA_ARCHITECTURES native)
-enable_language(CUDA)
+find_package(CUDAToolkit)
+if(CUDAToolkit_FOUND)
+    set(CMAKE_CUDA_STANDARD 11)
+    set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+    set(CMAKE_CUDA_ARCHITECTURES native)
+    enable_language(CUDA)
+endif()
 
 find_package(avx2)
 if(HAVE_AVX2_EXTENSIONS)

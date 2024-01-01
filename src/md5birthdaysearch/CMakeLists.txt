@@ -1,6 +1,5 @@
-add_executable(md5birthdaysearch
+set(md5birthdaysearch_SOURCES
     birthday.cpp
-    cuda_md5.cu
     dostep.cpp
     main.hpp
     storage.cpp
@@ -11,6 +10,12 @@ add_executable(md5birthdaysearch
     simd_avx256.cpp
     storage.hpp
 )
+
+if(CUDAToolkit_FOUND)
+    set(md5birthdaysearch_SOURCES ${md5birthdaysearch_SOURCES} cuda_md5.cu)
+endif()
+
+add_executable(md5birthdaysearch ${md5birthdaysearch_SOURCES})
 
 target_include_directories(md5birthdaysearch
     SYSTEM

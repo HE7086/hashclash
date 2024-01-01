@@ -22,6 +22,7 @@
 #include <map>
 #include <cmath>
 #include <algorithm>
+#include <mutex>
 
 #include <hashclash/saveload_bz2.hpp>
 
@@ -31,7 +32,6 @@
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/convenience.hpp>
 #include <boost/thread/thread.hpp>
-#include <boost/thread/mutex.hpp>
 
 #include <hashclash/sdr.hpp>
 #include <hashclash/rng.hpp>
@@ -43,8 +43,8 @@
 
 void determine_nrblocks_distribution(birthday_parameters& parameters);
 
-boost::mutex global_mutex;
-#define LOCK_GLOBAL_MUTEX	boost::mutex::scoped_lock lock(global_mutex);
+std::mutex global_mutex;
+#define LOCK_GLOBAL_MUTEX	std::lock_guard<std::mutex> lock(global_mutex);
 
 using namespace hashclash;
 using namespace std;

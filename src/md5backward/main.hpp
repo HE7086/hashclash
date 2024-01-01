@@ -23,6 +23,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <mutex>
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/thread.hpp>
@@ -33,7 +34,7 @@
 using namespace hashclash;
 using namespace std;
 
-extern boost::mutex mut;
+extern std::mutex mut;
 extern std::string workdir;
 class path_container_autobalance;
 void dostep(path_container_autobalance& container, bool savetocache = false);
@@ -94,7 +95,7 @@ public:
 	{
 		if (cond > maxcond) return;
 		if (ubound == 0) return;
-		boost::lock_guard<boost::mutex> lock(mut);
+		std::lock_guard<std::mutex> lock(mut);
 		condcount[cond] += amount;
 		size += amount;
 		unsigned uboundf = unsigned(double(ubound) * estimatefactor);

@@ -24,6 +24,7 @@
 #include <vector>
 #include <string>
 #include <stdexcept>
+#include <mutex>
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/thread.hpp>
@@ -36,7 +37,7 @@
 using namespace hashclash;
 using namespace std;
 
-extern boost::mutex mut;
+extern std::mutex mut;
 extern std::string workdir;
 class path_container;
 void dostep(path_container& container);
@@ -199,7 +200,7 @@ public:
 
 	void push_back(const sha1differentialpath& fullpath)
 	{
-		boost::lock_guard<boost::mutex> lock(mut);
+		std::lock_guard<std::mutex> lock(mut);
 		if (hw(++pbcount)==1) cout << "{" << pbcount << "}" << flush;
 		unsigned cond = fullpath.nrcond();
 		if (cond > bestpathcond) return;

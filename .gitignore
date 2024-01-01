@@ -32,4 +32,5 @@ cmake-build-*/
 build/
 .cache/
 bin
+test/
 run/

@@ -23,18 +23,18 @@
 #include <cmath>
 #include <algorithm>
 #include <stdexcept>
+#include <mutex>
 
 #include <boost/lexical_cast.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/convenience.hpp>
 #include <boost/thread/thread.hpp>
-#include <boost/thread/mutex.hpp>
 
 #include "main.hpp"
 #include "storage.hpp"
 
-boost::mutex storage_mutex;
-#define LOCK_STORAGE_MUTEX	boost::mutex::scoped_lock lock(storage_mutex);
+std::mutex storage_mutex;
+#define LOCK_STORAGE_MUTEX	std::lock_guard<std::mutex> lock(storage_mutex);
 
 using namespace hashclash;
 using namespace std;
