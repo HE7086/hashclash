@@ -52,10 +52,7 @@ endif()
 
 find_package(avx2)
 if(HAVE_AVX2_EXTENSIONS)
-else()
-    message("have avx2")
     add_compile_definitions(HASHCLASH_HAVE_AVX2)
-    add_compile_options(-march=native)
 endif()
 
 add_subdirectory(src)

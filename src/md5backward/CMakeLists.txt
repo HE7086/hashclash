@@ -21,3 +21,4 @@ target_link_libraries(md5backward
     BZip2::BZip2
     hashclash
 )
+install(TARGETS md5backward DESTINATION "${CMAKE_INSTALL_BINDIR}")

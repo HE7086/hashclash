@@ -484,7 +484,7 @@ void load_save_trails(bool dosave = true)
 		{
 			boost::filesystem::path filepath = *dit;
 			if (!exists(*dit) 
-				|| dit->is_symlink()
+				|| is_symlink(dit->path())
 				|| is_directory(*dit))
 				continue;
 #if BOOST_VERSION == 104300

@@ -31,3 +31,4 @@ target_compile_definitions(md5fastcoll
     PUBLIC
     BOOST_TIMER_ENABLE_DEPRECATED
 )
+install(TARGETS md5fastcoll DESTINATION "${CMAKE_INSTALL_BINDIR}")

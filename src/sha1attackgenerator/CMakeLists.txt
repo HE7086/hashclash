@@ -23,6 +23,7 @@ target_link_libraries(sha1attackgenerator
     BZip2::BZip2
     hashclash
 )
+install(TARGETS sha1attackgenerator DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(sha1nearcollisionattack
     collfind.cpp
@@ -44,3 +45,4 @@ target_link_libraries(sha1nearcollisionattack
     hashclash
 )
 target_compile_options(sha1nearcollisionattack PRIVATE -Wno-shift-overflow)
+install(TARGETS sha1nearcollisionattack DESTINATION "${CMAKE_INSTALL_BINDIR}")

@@ -33,3 +33,4 @@ target_link_libraries(md5birthdaysearch
     BZip2::BZip2
     hashclash
 )
+install(TARGETS md5birthdaysearch DESTINATION "${CMAKE_INSTALL_BINDIR}")
